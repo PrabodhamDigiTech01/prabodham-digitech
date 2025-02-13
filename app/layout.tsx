@@ -1,9 +1,8 @@
-import { Roboto } from "next/font/google";
-import "./globals.css";
-import ClientLayout from "./ClientLayout";
 import { Metadata } from "next";
+import { Roboto } from "next/font/google";
+import ClientLayout from "./ClientLayout";
+import "./globals.css";
 import { seoConfig } from "./shared/seo.config";
-import { NextWebVitalsMetric } from "next/app";
 
 const roboto = Roboto({
   weight: "400",
@@ -121,10 +120,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
-
-// Add web vitals reporting
-export function reportWebVitals(metric: NextWebVitalsMetric) {
-  console.log(metric);
-  // Send to your analytics platform
 }
