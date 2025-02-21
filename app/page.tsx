@@ -57,12 +57,12 @@ export default function Home() {
   }, []);
 
   return (
-    <main id="home" className="min-h-screen overflow-hidden bg-black">
+    <div id="home" className="min-h-screen overflow-hidden bg-black">
       {/* Hero Section */}
-      <section className="mt-4 min-h-screen flex flex-col items-center justify-center">
+      <section className="h-[100svh] max-h-[900px] flex flex-col items-center justify-center">
         {isClient && (
           <>
-            {/* Floating shapes and background effects contained within hero section */}
+            {/* Floating shapes - Adjust positioning */}
             <div className="absolute inset-0 overflow-hidden">
               <FloatingShape className="w-[350px] h-[350px] bg-light-blue absolute top-40 left-[35%] -translate-x-1/2" />
               <FloatingShape className="w-[300px] h-[300px] bg-pink top-40 right-0" />
@@ -190,6 +190,6 @@ export default function Home() {
       <motion.section>
         <VerifiedSection />
       </motion.section>
-    </main>
+    </div>
   );
 }

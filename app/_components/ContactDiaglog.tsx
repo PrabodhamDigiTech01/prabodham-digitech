@@ -26,11 +26,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { parsePhoneNumber, isValidPhoneNumber } from "libphonenumber-js";
 
 const formSchema = z.object({
   title: z.string().min(2, "Title must be at least 2 characters"),
   message: z.string().min(10, "Message must be at least 10 characters"),
   email: z.string().email("Please enter a valid email address"),
+  phone: z
+    .string()
+    .min(10, "Phone number must be at least 10 digits")
+    .refine((value) => {
+      try {
+        return isValidPhoneNumber(value, "IN"); // 'IN' for India
+      } catch {
+        return false;
+      }
+    }, "Please enter a valid phone number"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -39,6 +50,7 @@ async function sendEmail(data: FormData) {
   const templateParams = {
     from_name: data.get("user_name") ?? "", // Changed to match template
     user_email: data.get("email") ?? "", // Changed to match template
+    user_phone: data.get("phone") ?? "",
     message: data.get("message") ?? "",
     title: data.get("title") ?? "",
   };
@@ -72,6 +84,7 @@ export function ContactDialog() {
       title: "",
       message: "",
       email: "",
+      phone: "",
     },
   });
 
@@ -82,6 +95,7 @@ export function ContactDialog() {
     formData.append("title", data.title);
     formData.append("message", data.message);
     formData.append("email", data.email);
+    formData.append("phone", data.phone);
     try {
       await sendEmail(formData);
       toast({
@@ -106,9 +120,9 @@ export function ContactDialog() {
       <DialogTrigger asChild>
         <Button
           size="lg"
-          className="bg-gradient-to-r from-[#FD5298] to-[#01A2CC] text-white border-0 
+          className="bg-gradient-to-r from-pink to-light-blue text-white border-0 
                      hover:shadow-[0_0_20px_rgba(253,82,152,0.3)] transition-shadow duration-300">
-          Get in Touch
+          Get a Free Quote
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
@@ -144,14 +158,14 @@ export function ContactDialog() {
             />
             <FormField
               control={form.control}
-              name="message"
+              name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Message</FormLabel>
+                  <FormLabel>Phone Number</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Type your message here"
-                      className="min-h-[100px]"
+                    <Input
+                      type="tel"
+                      placeholder="Enter your phone number"
                       {...field}
                     />
                   </FormControl>
@@ -167,6 +181,23 @@ export function ContactDialog() {
                   <FormLabel>Your Email</FormLabel>
                   <FormControl>
                     <Input placeholder="Enter your email address" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Message</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="What are your requirements?"
+                      className="min-h-[100px]"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
