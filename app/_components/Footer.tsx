@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
 import Image from "next/image";
 
 const Footer = () => {
@@ -51,7 +58,7 @@ const Footer = () => {
             </h3>
             <div className="flex gap-4">
               <motion.a
-                href=""
+                href="https://www.linkedin.com/company/prabodham-digitech/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full bg-gray-800 text-pink hover:bg-light-blue/20 hover:text-light-blue transition-colors"
@@ -68,7 +75,17 @@ const Footer = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}>
                 <Instagram className="w-5 h-5" />
-                <span className="sr-only">Twitter</span>
+                <span className="sr-only">Instagram</span>
+              </motion.a>
+              <motion.a
+                href="https://www.facebook.com/share/1A1zi5Byz1/?mibextid=qi2Omg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-gray-800 text-pink hover:bg-light-blue/20 hover:text-light-blue transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}>
+                <Facebook className="w-5 h-5" />
+                <span className="sr-only">Facebook</span>
               </motion.a>
             </div>
           </div>

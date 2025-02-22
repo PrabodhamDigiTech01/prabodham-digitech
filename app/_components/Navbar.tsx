@@ -3,11 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Phone, X } from "lucide-react";
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import { Link as ScrollLink } from "react-scroll";
+import { ArrowRight, ChevronRight, Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Link as ScrollLink } from "react-scroll";
 
 const navItems = [
   { title: "Home", sectionId: "home" },
@@ -35,7 +35,8 @@ const Navbar = () => {
   }, []);
 
   const handleCallButton = () => {
-    const message = "Hi! I'd like to schedule a call to discuss your services.";
+    const message =
+      "Hi! I'm interested in learning more about your digital transformation services. Could we schedule a consultation call to discuss my requirements?";
     const whatsappUrl = `https://wa.me/919222322261?text=${encodeURIComponent(
       message
     )}`;
@@ -65,8 +66,8 @@ const Navbar = () => {
                 variant="default"
                 className="bg-gradient-to-r from-light-blue to-pink text-white rounded-xl px-4 py-2 flex items-center gap-2 whitespace-nowrap"
                 onClick={handleCallButton}>
-                <span className="relative z-10">Schedule a Call</span>
-                <Phone className="w-3 h-3 relative z-10" />
+                <span className="relative z-10">Enquire Now</span>
+                <ArrowRight className="w-3 h-3 relative z-10" />
               </Button>
 
               <button
@@ -207,8 +208,8 @@ const Navbar = () => {
                 variant="default"
                 className="bg-gradient-to-r from-light-blue to-pink text-white rounded-xl px-4 py-2 flex items-center gap-2"
                 onClick={handleCallButton}>
-                <span>Schedule a Call</span>
-                <Phone className="w-4 h-4" />
+                <span>Enquire now</span>
+                <ArrowRight className="w-3 h-3 relative z-10" />
               </Button>
             </div>
           </motion.div>
