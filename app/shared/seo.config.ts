@@ -1,11 +1,11 @@
 export const seoConfig = {
   default: {
-    title: "Prabodham DigiTech | Specialist in 360 Digital Marketing Solutions",
+    title: "Prabodham DigiTech: Specialist in 360 Digital Marketing Solutions",
     description:
       "Unlock the full potential of your brand with 360 digital solutions. Our expert-driven marketing strategies are tailored for growth and success.",
     keywords:
       "digital marketing, SEO, social media marketing, content marketing, web development, branding, digital solutions, marketing strategies",
-    url: "https://prabodhamdigitech.com",
+    url: "https://www.prabodhamdigitech.com/",
     siteName: "Prabodham DigiTech Solutions",
     locale: "en_US",
     type: "website",
@@ -20,8 +20,8 @@ export const seoConfig = {
   },
   organization: {
     name: "Prabodham DigiTech Solutions",
-    url: "https://prabodhamdigitech.com",
-    logo: "https://prabodhamdigitech.com/Logo.png",
+    url: "https://www.prabodhamdigitech.com/",
+    logo: "https://www.prabodhamdigitech.com/Logo.png",
     email: "PDS.sales01@gmail.com",
     phone: "+91 9222322261",
     sameAs: [
