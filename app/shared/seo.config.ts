@@ -1,6 +1,6 @@
 export const seoConfig = {
   default: {
-    title: "Prabodham DigiTech: Specialist in 360 Digital Marketing Solutions",
+    title: "PrabodhamDigiTech: Specialist in 360 Digital Marketing Solutions",
     description:
       "Unlock the full potential of your brand with 360 digital solutions. Our expert-driven marketing strategies are tailored for growth and success.",
     keywords:
