@@ -109,7 +109,9 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section id="services" className="w-full py-20 bg-black relative overflow-hidden">
+    <section
+      id="services"
+      className="w-full py-20 bg-black relative overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -158,7 +160,7 @@ export function ServicesSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-4 text-gray-400 text-lg max-w-2xl mx-auto">
             Transform your digital presence with our full suite of services
-            designed to elevate your brand and d rive growth.
+            designed to elevate your brand and drive growth.
           </motion.p>
         </motion.div>
 

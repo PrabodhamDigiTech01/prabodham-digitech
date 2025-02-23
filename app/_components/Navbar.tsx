@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
+import { ContactDialog } from "./ContactDiaglog";
 
 const navItems = [
   { title: "Home", sectionId: "home" },
@@ -19,6 +20,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -33,15 +35,6 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const handleCallButton = () => {
-    const message =
-      "Hi! I'm interested in learning more about your digital transformation services. Could we schedule a consultation call to discuss my requirements?";
-    const whatsappUrl = `https://wa.me/919222322261?text=${encodeURIComponent(
-      message
-    )}`;
-    window.open(whatsappUrl, "_blank");
-  };
 
   return (
     <>
@@ -62,13 +55,17 @@ const Navbar = () => {
                 className="object-contain"
               />
 
-              <Button
-                variant="default"
-                className="bg-gradient-to-r from-light-blue to-pink text-white rounded-xl px-4 py-2 flex items-center gap-2 whitespace-nowrap"
-                onClick={handleCallButton}>
-                <span className="relative z-10">Enquire Now</span>
-                <ArrowRight className="w-3 h-3 relative z-10" />
-              </Button>
+              {/* Contact Dialog */}
+              <ContactDialog
+                isOpen={isContactDialogOpen}
+                onOpenChange={setIsContactDialogOpen}>
+                <Button
+                  variant="default"
+                  className="bg-gradient-to-r from-light-blue to-pink text-white rounded-xl px-4 py-2 flex items-center gap-2">
+                  <span>Enquire now</span>
+                  <ArrowRight className="w-3 h-3 relative z-10" />
+                </Button>
+              </ContactDialog>
 
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
@@ -203,14 +200,17 @@ const Navbar = () => {
                 ))}
               </nav>
 
-              {/* Call Button */}
-              <Button
-                variant="default"
-                className="bg-gradient-to-r from-light-blue to-pink text-white rounded-xl px-4 py-2 flex items-center gap-2"
-                onClick={handleCallButton}>
-                <span>Enquire now</span>
-                <ArrowRight className="w-3 h-3 relative z-10" />
-              </Button>
+              {/* Contact Dialog */}
+              <ContactDialog
+                isOpen={isContactDialogOpen}
+                onOpenChange={setIsContactDialogOpen}>
+                <Button
+                  variant="default"
+                  className="bg-gradient-to-r from-light-blue to-pink text-white rounded-xl px-4 py-2 flex items-center gap-2">
+                  <span>Enquire now</span>
+                  <ArrowRight className="w-3 h-3 relative z-10" />
+                </Button>
+              </ContactDialog>
             </div>
           </motion.div>
         </motion.header>

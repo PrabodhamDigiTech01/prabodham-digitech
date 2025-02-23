@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { ChevronDown, Sparkles } from "lucide-react";
+import { ChevronDown, Sparkles, MessageCircle, Send } from "lucide-react";
 import { Pacifico } from "next/font/google";
 import { useEffect, useState } from "react";
 import { AboutSection } from "./_components/About";
@@ -47,6 +47,15 @@ const FloatingShape = ({ className }: { className?: string }) => {
       }}
     />
   );
+};
+
+const handleCallButton = () => {
+  const message =
+    "Hi! I'm interested in learning more about your digital transformation services. Could we schedule a consultation call to discuss my requirements?";
+  const whatsappUrl = `https://wa.me/919222322261?text=${encodeURIComponent(
+    message
+  )}`;
+  window.open(whatsappUrl, "_blank");
 };
 
 export default function Home() {
@@ -190,6 +199,13 @@ export default function Home() {
       <motion.section>
         <VerifiedSection />
       </motion.section>
+
+      <button
+        onClick={handleCallButton}
+        className="fixed bottom-4 right-4 z-50 shadow-lg transition duration-300"
+        aria-label="Contact us on WhatsApp">
+        <MessageCircle className="w-10 h-10 p-3 bg-gradient-to-b from-light-blue to-pink rounded-full text-white/80 hover:text-white transition-colors" />
+      </button>
     </div>
   );
 }

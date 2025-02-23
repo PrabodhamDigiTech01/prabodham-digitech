@@ -1,11 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Loader2, X } from "lucide-react";
-import emailjs from "emailjs-com";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -26,7 +20,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { parsePhoneNumber, isValidPhoneNumber } from "libphonenumber-js";
+import { zodResolver } from "@hookform/resolvers/zod";
+import emailjs from "emailjs-com";
+import { isValidPhoneNumber } from "libphonenumber-js";
+import { Loader2, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 const formSchema = z.object({
   title: z.string().min(2, "Title must be at least 2 characters"),
@@ -69,8 +69,15 @@ async function sendEmail(data: FormData) {
   }
 }
 
-export function ContactDialog() {
-  const [isOpen, setIsOpen] = useState(false);
+export function ContactDialog({
+  isOpen,
+  onOpenChange,
+  children,
+}: {
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
+  children: React.ReactNode;
+}) {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
@@ -102,7 +109,7 @@ export function ContactDialog() {
         title: "Message sent successfully!",
         description: "We'll get back to you as soon as possible.",
       });
-      setIsOpen(false);
+      onOpenChange(false);
       form.reset();
     } catch (error) {
       toast({
@@ -116,15 +123,8 @@ export function ContactDialog() {
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Button
-          size="lg"
-          className="bg-gradient-to-r from-pink to-light-blue text-white border-0 
-                     hover:shadow-[0_0_20px_rgba(253,82,152,0.3)] transition-shadow duration-300">
-          Get a Free Quote
-        </Button>
-      </DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Send a Message</DialogTitle>
@@ -133,7 +133,7 @@ export function ContactDialog() {
           </DialogDescription>
         </DialogHeader>
         <button
-          onClick={() => setIsOpen(false)}
+          onClick={() => onOpenChange(false)}
           className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>

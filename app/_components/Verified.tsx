@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
 import Image from "next/image";
 import { ContactDialog } from "./ContactDiaglog";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const partners = [
   {
@@ -34,6 +36,8 @@ const partners = [
 ];
 
 export function VerifiedSection() {
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+
   return (
     <section className="w-full py-24 bg-black relative overflow-hidden">
       <div className="container mx-auto px-4">
@@ -95,7 +99,16 @@ export function VerifiedSection() {
             Kindly share your coordinates and we will be more than happy to help
             you in meeting your digital media objectives.
           </p>
-          <ContactDialog />
+          <ContactDialog
+            isOpen={isContactDialogOpen}
+            onOpenChange={setIsContactDialogOpen}>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-pink to-light-blue text-white border-0 
+                         hover:shadow-[0_0_20px_rgba(253,82,152,0.3)] transition-shadow duration-300">
+              Get a Free Quote
+            </Button>
+          </ContactDialog>
         </motion.div>
       </div>
     </section>
